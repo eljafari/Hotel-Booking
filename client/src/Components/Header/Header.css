@@ -1,0 +1,145 @@
+body {
+    margin: 0;
+}
+
+.header {
+
+    background-color: #003580;
+    display: flex;
+    justify-content: center;
+    color: white;
+    position: relative;
+}
+
+.headerContainer {
+    width: 100%;
+    max-width: 1024px;
+    color: white;
+    margin: 20px 0px 100px 0px;
+
+}
+
+.headerContainer.hotelMode {
+    margin: 20px 0px;
+}
+
+.headerList {
+    display: flex;
+    gap: 30px;
+}
+
+.headerListItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.headerListItem.active {
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.headerTitle {
+    margin-top: 40px;
+    font-size: 38px;
+}
+
+.headerDescription {
+    margin: 20px 0;
+    font-size: 21px;
+}
+
+.headerSearch {
+    height: 30px;
+    background-color: white;
+    border: 3px solid #febb02;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: -25px;
+    width: 100%;
+    max-width: 1024px;
+}
+
+.headerIcon {
+    color: lightgray;
+}
+
+.headerSerchButton {
+    background-color: #003580;
+    border: none;
+    color: white;
+    height: -webkit-fill-available;
+    border-radius: 5px;
+    position: absolute;
+    right: 0;
+
+    width: 85px;
+
+}
+
+.headerSearchItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.headerSearchInput {
+    border: none;
+    outline: none;
+}
+
+.headerSearchText {
+    color: lightgrey;
+    cursor: pointer;
+}
+
+.date {
+    position: absolute;
+    top: 50px;
+}
+
+.options {
+    border: 3px solid #eff2f7;
+    border-radius: 5px;
+    padding: 15px;
+    position: absolute;
+    top: 50px;
+    color: #5b5b5c;
+    background-color: white;
+
+}
+
+.optionsItem {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    font-size: 14px;
+}
+
+
+.optionCounter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.optionCounterBtn {
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #003580;
+}
+
+.optionCounterBtn:disabled {
+    cursor: not-allowed;
+}

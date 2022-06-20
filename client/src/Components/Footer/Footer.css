@@ -1,0 +1,31 @@
+.footer {
+    background-color: #003580;
+    width: 100%;
+    font: 12px;
+    color: white;
+}
+
+.footerLinks {
+
+    display: flex;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+
+}
+
+.footerList {
+    list-style: none;
+}
+
+.fListItem {
+    padding: 5px;
+    cursor: pointer;
+
+}
+
+.fText {
+    text-align: center;
+    padding-bottom: 20px;
+}
