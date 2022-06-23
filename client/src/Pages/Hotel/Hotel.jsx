@@ -38,16 +38,16 @@ export default function Hotel() {
             <Navbar />
             <Header type='hotels' />
             <div className="hotelContainer">
-
+                {openSlide && (<div className="slide">
+                    <CancelPresentationIcon className='closeSlide' onClick={() => setOpenSlide(false)} />
+                    <ArrowBackIosNewIcon
+                        onClick={() => slideNum === 0 ? setSlideNum(photos.length - 1) : setSlideNum(slideNum - 1)} className='arrow' />
+                    <div className="sliderWrapper">
+                        <img src={photos[slideNum].src} alt="" className="sliderImg" />
+                    </div>
+                    <ArrowForwardIosIcon onClick={() => slideNum === photos.length - 1 ? setSlideNum(0) : setSlideNum(slideNum + 1)} className='arrow' />
+                </div>)}
                 <div className="hotelWrapper">
-                    {openSlide && <div className="slide">
-                        <CancelPresentationIcon className='closeSlide' onClick={() => setOpenSlide(false)} />
-                        <ArrowBackIosNewIcon />
-                        <div className="sliderWrapper">
-                            <img src={photos[slideNum].src} alt="" className="sliderImg" />
-                        </div>
-                        <ArrowForwardIosIcon />
-                    </div>}
                     <button className='reserveBtn'>Reserve Now!</button>
                     <h1 className="hotelTitle">Grand Hotel</h1>
                     <div className="hotelAdd">
@@ -61,20 +61,20 @@ export default function Hotel() {
                                 <img onClick={() => { setSlideNum(ind); setOpenSlide(true) }} src={photo.src} alt="" className="hotelImg" />
                             </div>
                         ))}
-                    </div>
-                    <div className="hotelDetails">
-                        <div className="hotelDetailText">
-                            <h1>Stay in the heart of Whistler</h1>
-                            <p className='hotelDescription'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis provident fuga voluptatum exercitationem iste tempora corporis eum vero facere aut tempore adipisci quas blanditiis accusantium incidunt, laborum laudantium perferendis est.</p>
-                        </div>
-                        <div className="hotelDetailPrice">
-                            <h1 >Perfect for 7night stay</h1>
-                            <span>Situated in the real heart of Whistler, this hotel has an excellent location score of 9.3
-                            </span>
-                            <h2>
-                                <b>$921</b> (7 nights)
-                            </h2>
-                            <button >Reserve</button>
+                        <div className="hotelDetails">
+                            <div className="hotelDetailText">
+                                <h1>Stay in the heart of Whistler</h1>
+                                <p className='hotelDescription'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis provident fuga voluptatum exercitationem iste tempora corporis eum vero facere aut tempore adipisci quas blanditiis accusantium incidunt, laborum laudantium perferendis est.</p>
+                            </div>
+                            <div className="hotelDetailPrice">
+                                <h1 >Perfect for 7night stay</h1>
+                                <span>Situated in the real heart of Whistler, this hotel has an excellent location score of 9.3
+                                </span>
+                                <h2>
+                                    <b>$921</b> (7 nights)
+                                </h2>
+                                <button >Reserve</button>
+                            </div>
                         </div>
                     </div>
                 </div>

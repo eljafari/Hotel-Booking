@@ -9,6 +9,7 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main css file for calendar
 import 'react-date-range/dist/theme/default.css'; // theme css file calendar
 import SearchItem from '../../Components/SearchItem/SearchItem';
+import UseFetch from '../../Hooks/fetchs';
 
 
 export default function Hotels() {
@@ -16,19 +17,20 @@ export default function Hotels() {
     const [openOptions, setOpenOptions] = useState(false)
 
     const location = useLocation();
-    // console.log(location);
+    console.log(location.state.date, "loc");
     const [date, setDate] = useState(location.state.date);
     const [destination, setDestination] = useState(location.state.destination);
     const [options, setOptions] = useState(location.state.options);
+    const [min, setMin] = useState(undefined);
+    const [max, setMax] = useState(undefined);
 
-    const handelOptions = (name, oprator) => {
-        setOptions(prev => {
-            return {
-                ...prev, [name]: oprator === "i" ? options[name] + 1 : options[name] - 1
-            }
-        })
-    }
 
+    const { data, loading, error, ReFetchData } = UseFetch(`http://localhost:5000/api/v1/hotels`);
+    console.log(data, 'dataaaaaaaaaaaaaaa');
+    const handleClick = () => {
+        ReFetchData(`http://localhost:5000/api/v1/hotels?city=${destination}`);
+        console.log(`http://localhost:5000/api/v1/hotels?city=${destination}`);
+    };
     return (
         <div>
             <Navbar />
@@ -41,7 +43,7 @@ export default function Hotels() {
                         </h1>
                         <div className="lsItem">
                             <label >Destination</label>
-                            <input placeholder={destination} type="text" className="lsInput" />
+                            <input onChange={(e) => setDestination(e.target.value)} placeholder={destination} type="text" className="lsInput" />
                         </div>
                         <div className="lsItem">
                             <label >Check-in Date</label>
@@ -49,12 +51,9 @@ export default function Hotels() {
                                 {format(date[0].startDate, "MM/dd/yyyy")} to {format(date[0].endDate, "MM/dd/yyyy")}
                             </span>
                             {openDate && <DateRange
-                                editableDateInputs={true}
                                 onChange={item => setDate([item.selection])}
                                 minDate={new Date()}
-                                moveRangeOnFirstSelection={false}
                                 ranges={date}
-                            // className='date'
                             />}
                         </div>
 
@@ -64,13 +63,13 @@ export default function Hotels() {
                                 <span className="lsOptionText">
                                     Min Price <small>  . per night</small>
                                 </span>
-                                <input min={0} type="number" className="lsOptionInput" />
+                                <input min={0} onChange={(e) => setMin(e.target.value)} type="number" className="lsOptionInput" />
                             </div>
                             <div className="lsOptionItem">
                                 <span className="lsOptionText">
                                     Max Price <small>  . per night</small>
                                 </span>
-                                <input min={0} type="number" className="lsOptionInput" />
+                                <input min={0} onChange={(e) => setMax(e.target.value)} type="number" className="lsOptionInput" />
                             </div>
                             <div className="lsOptionItem">
                                 <span className="lsOptionText">
@@ -86,20 +85,21 @@ export default function Hotels() {
                             </div>
                             <div className="lsOptionItem">
                                 <span className="lsOptionText">
-                                    Rooms
+                                    Room
                                 </span>
                                 <input min={1} placeholder={options.rooms} type="number" className="lsOptionInput" />
                             </div>
                         </div>
 
-                        <button className="lsBtn">Search</button>
+                        <button onClick={handleClick} className="lsBtn">Search</button>
                     </div>
                     <div className="listResult">
-                        <SearchItem />
-                        <SearchItem />
-                        <SearchItem />
-                        <SearchItem />
-                        <SearchItem />
+                        {loading ? "loading" : (
+                            <>
+                                {data.map(item => <SearchItem item={item} />)}
+                                {/* {console.log(data, 'dataaa')} */}
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
