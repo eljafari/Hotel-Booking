@@ -25,11 +25,9 @@ export default function Hotels() {
     const [max, setMax] = useState(undefined);
 
 
-    const { data, loading, error, ReFetchData } = UseFetch(`http://localhost:5000/api/v1/hotels`);
-    console.log(data, 'dataaaaaaaaaaaaaaa');
+    const { data, loading, error, ReFetchData } = UseFetch(`http://localhost:5000/api/v1/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`);
     const handleClick = () => {
         ReFetchData(`http://localhost:5000/api/v1/hotels?city=${destination}`);
-        console.log(`http://localhost:5000/api/v1/hotels?city=${destination}`);
     };
     return (
         <div>
