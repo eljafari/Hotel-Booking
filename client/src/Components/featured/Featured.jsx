@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import UseFetch from '../../Hooks/fetchs';
 import "./Featured.css";
 
 export default function Featured() {
+    const [destination, setDestination] = useState("");
+
     const { data, loading, error } = UseFetch("http://localhost:5000/api/v1/hotels/countByCity?cities=Victoria,Vancouver,Coquitlam,Wistler,Banff");
     // console.log(data.list, 'data');
-
+    const navigate = useNavigate();
+    const handleSearch = () => {
+        navigate('hotels')
+    }
     return (
         <>
             <div className='featured'>
                 {loading ? "Please wait, it's loading..." :
                     (<>
+
                         <div className="featuredItem">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Canada_Place_%28213050673%29.jpeg" alt="Vancouver" className="featuredImg" />
                             <div className="featuredTitle">
@@ -29,6 +36,7 @@ export default function Featured() {
             <div className='featured'>
                 {loading ? 'Please wait, is Loading...' :
                     (<>
+
                         <div className="featuredItem">
                             <img src="https://media.gettyimages.com/photos/british-columbia-parliament-buildings-victoria-b-picture-id146583110?s=612x612" alt="Victoria" className="featuredImg" />
                             <div className="featuredTitle">

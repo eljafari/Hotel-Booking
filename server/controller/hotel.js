@@ -7,7 +7,7 @@ const getHotels = async (req, res) => {
     try {
         const data = await Hotel.find({
             ...others, cheapestPrice: { $gt: min | 1, $lt: max || 999 },
-        }).limit(req.query.limit);
+        });
         return res.status(200).json(data)
     } catch (error) {
         return res.status(500).json({
